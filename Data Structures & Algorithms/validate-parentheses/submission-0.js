@@ -4,6 +4,7 @@ class Solution {
      * @return {boolean}
      */
     isValid(s) {
+        let isValid = false;
         let stack = [];
         let brackets ={
         '}' : '{',
@@ -11,17 +12,19 @@ class Solution {
         ')' : '('
         }
         for(const idx in s){
-            if(s[idx] === '[' || '{' , '(')
+            if(s[idx] === '[' || s[idx] === '{' || s[idx] === '(')
             {
                 stack.push(s[idx])
             }
             else{
-                if(brackets[idx] == stack[s.length - idx]){
+                if(brackets[s[idx]] == stack[stack.length - 1]){
                     stack.pop()
+
+                    if(stack.length === 0 ) isValid = true
                 }
-                else return false
             }
         }
-        return true
+
+       return isValid
     }
 }
